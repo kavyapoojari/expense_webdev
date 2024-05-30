@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Expense Tracker</title>
+    <style>
+        body{
+background-color:rgb(222, 142, 155);
+}
+h1
+{
+color:blue;
+}
+h2{
+color:red;
+}
+mark{ background-color:#FFFF;
+padding:10px;
+}
+table{
+background-color:gray;
+}
+
+    </style>
+</head>
+<body>
+    <h1>Expense Tracker</h1>
+    
+    <label for="expense">Expense:</label>
+    <input type="text" id="expense" placeholder="Enter expense">
+    
+    <label for="amount">Amount:</label>
+    <input type="number" id="amount" placeholder="Enter amount">
+    
+    <button onclick="addExpense()">Add Expense</button>
+    
+    <h2>Expenses:</h2>
+    <ul id="expenseList">
+        <!-- Expenses will be added here dynamically using JavaScript -->
+    </ul>
+    
+    <h2>Total Expenses:</h2>
+    <div id="totalExpense">0</div>
+    
+    <script>
+        // JavaScript for adding expenses and calculating total
+        let total = 0;
+        
+        function addExpense() {
+            const expenseName = document.getElementById("expense").value;
+            const expenseAmount = parseFloat(document.getElementById("amount").value);
+            
+            if (expenseName && !isNaN(expenseAmount)) {
+                total += expenseAmount;
+                document.getElementById("totalExpense").textContent = total.toFixed(2);
+                
+                const expenseList = document.getElementById("expenseList");
+                const listItem = document.createElement("li");
+                listItem.textContent = `${expenseName}: $${expenseAmount.toFixed(2)}`;
+                expenseList.appendChild(listItem);
+                
+                // Clear input fields
+                document.getElementById("expense").value = "";
+                document.getElementById("amount").value = "";
+            }
+        }
+    </script>
+</body>
+</html>
